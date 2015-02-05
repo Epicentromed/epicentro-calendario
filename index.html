@@ -18,7 +18,7 @@
             <div class="nav-wrapper">
                 <div class="col s12" style="line-height: 0px;">
                     <a href="#!" class="brand-logo">
-                      <img src="logo-epicentro.png" alt="Logo Epicentro" style="height:90px; margin-left: 38px;" >
+                      <img src="img/logo-epicentro.png" alt="Logo Epicentro" style="height:90px; margin-left: 38px;" >
                     </a>
                 </div>
             </div>
@@ -32,7 +32,7 @@
 				width: 96%;
 				height: 86%;
 				position: absolute;
-                top: 10%;
+                top: 88px;
                 left: 2%;
         	}
             #modal-trigger
@@ -43,10 +43,6 @@
                 z-index: 5;
             }
 
-            .modal
-            {
-                height: 360px;
-            }
         </style>
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     </head>
@@ -60,7 +56,67 @@
 
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
-            <iframe src="https://calendar.zoho.com/eventreqForm/f677f2e42b07b7fa527e8964d494942ae5664a239afc39c61662f19c2a4d43264a64100d17cdc3bb?theme=0&l=es"  frameborder="0" scrolling="no" marginWidth="0" border="0px" marginHeight="0" height="300px" width="432px" allowTransparency="true" align="center"></iframe>
+            <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="name" type="text" class="validate">
+                    <label for="name">Nombre</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="email" type="text" class="validate">
+                    <label for="email">Correo electrónico</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="date" type="date" class="datepicker">
+                    <label for="date">Fecha</label>
+                  </div>
+                  <div class="col s6">
+                    <label>Hora</label>
+                    <select>
+                        <option value="" disabled selected></option>
+                        <option value="08:00">08:00 a.m.</option>
+                        <option value="08:30">08:30 a.m.</option>
+                        <option value="09:00">09:00 a.m.</option>
+                        <option value="09:30">09:30 a.m.</option>
+                        <option value="10:00">10:00 a.m.</option>
+                        <option value="10:30">10:30 a.m.</option>
+                        <option value="11:00">11:00 a.m.</option>
+                        <option value="11:30">11:30 a.m.</option>
+                        <option value="12:00">12:00 p.m.</option>
+                        <option value="12:30">12:30 p.m.</option>
+                        <option value="13:00">01:00 p.m.</option>
+                        <option value="13:30">01:30 p.m.</option>
+                        <option value="14:00">02:00 p.m.</option>
+                        <option value="14:30">02:30 p.m.</option>
+                        <option value="15:00">03:00 p.m.</option>
+                        <option value="15:30">03:30 p.m.</option>
+                        <option value="16:00">04:00 p.m.</option>
+                        <option value="16:30">04:30 p.m.</option>
+                        <option value="17:00">05:00 p.m.</option>
+                        <option value="17:30">05:30 p.m.</option>
+                        <option value="18:00">06:00 p.m.</option>
+                        <option value="18:30">06:30 p.m.</option>
+                        <option value="19:00">07:00 p.m.</option>
+                        <option value="19:30">07:30 p.m.</option>
+                        <option value="20:00">08:00 p.m.</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <textarea id="description" class="materialize-textarea"></textarea>
+                    <label>Descripción</label>
+                  </div>
+                </div>
+
+                <a class="waves-effect waves-teal btn-flat">Enviar</a>
+                <a class="waves-effect waves-teal btn-flat">Cancelar</a>
+
+              </form>
+            </div>
         </div>
 
         <!-- Modal Trigger -->
@@ -83,6 +139,15 @@
              $(document).ready(function(){
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
+
+                // Materialize Calendar init
+                $('.datepicker').pickadate();
+                // Materialize Select init
+                $('select').material_select();
+
+                // Ajax Events
+
+                var url = "https://calendar.zoho.com/eventreq/f677f2e42b07b7fa527e8964d494942ae5664a239afc39c61662f19c2a4d43264a64100d17cdc3bb?name=[name]&mailId=[EmailId]&date=[MM/dd/yyyy]&time=[13:00]&reason=[Reason for Appointment]"
               });
         </script>
     </body>
