@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Calendario Epicentro</title>
+        <meta name="description" content="Eventos Epicentro">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        
+        <!-- Navbar -->
+        <div class="navbar-wrapper">
+          <nav style="background-color: white; height:118px">
+            <div class="nav-wrapper">
+                <div class="col s12" style="line-height: 0px;">
+                    <a href="#!" class="brand-logo">
+                      <img src="logo-epicentro.png" alt="Logo Epicentro" style="height:90px; margin-left: 38px;" >
+                    </a>
+                </div>
+            </div>
+          </nav>
+        </div>
+
+        <!--Site Styles-->
+        <style type="text/css">
+        	iframe#calendar
+        	{
+				width: 96%;
+				height: 86%;
+				position: absolute;
+                top: 10%;
+                left: 2%;
+        	}
+            #modal-trigger
+            {
+                position: fixed;
+                bottom: 10px;
+                right: 30px;
+                z-index: 5;
+            }
+
+            .modal
+            {
+                height: 360px;
+            }
+        </style>
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    </head>
+    <body style="background-color:#fafafa">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">Estás usando un navegador <strong>desactualizado</strong>. Por favor <a href="http://browsehappy.com/">actualiza tu navegador</a> para mejorar tu experiencia.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <iframe id="calendar" src="https://calendar.zoho.com/embed/f677f2e42b07b7fa527e8964d494942ae5664a239afc39c61662f19c2a4d43264a64100d17cdc3bb?title=Prueba&type=1&l=en&tz=America/Bogota&sh=[0,0,0]&v=1" width="600" height="500" frameborder="0" scrolling="no"></iframe>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <iframe src="https://calendar.zoho.com/eventreqForm/f677f2e42b07b7fa527e8964d494942ae5664a239afc39c61662f19c2a4d43264a64100d17cdc3bb?theme=0&l=es"  frameborder="0" scrolling="no" marginWidth="0" border="0px" marginHeight="0" height="300px" width="432px" allowTransparency="true" align="center"></iframe>
+        </div>
+
+        <!-- Modal Trigger -->
+        <a id="modal-trigger" class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal1"><i class="mdi-content-add"></i></a>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript">
+             $(document).ready(function(){
+                // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+                $('.modal-trigger').leanModal();
+              });
+        </script>
+    </body>
+</html>
