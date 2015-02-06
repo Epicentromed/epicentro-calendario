@@ -47,6 +47,32 @@
             .modal
             {
                 width: 70%;
+                height: 80%;
+                max-height: 100%;
+                top: 5% !important; 
+            }
+
+            .modal .row
+            {
+                margin-top: 20px;
+            }
+
+            @media (min-height: 38.875em)
+            {
+                .picker--opened .picker__frame 
+                {
+                top: 5%;
+                bottom: auto;
+                }
+            }
+            
+            @media (min-height: 35.875em)
+            {
+                .picker--opened .picker__frame 
+                {
+                top: 5%;
+                bottom: 20% auto;
+                }
             }
 
         </style>
@@ -62,24 +88,29 @@
 
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
+            
             <div class="row">
+            <div class="col s12">
+                <h5>Solicita un espacio!!!</h5>
+                <div class="divider"></div>
+            </div>    
               <form class="col s12">
                 <div class="row">
-                  <div class="input-field col s6">
+                  <div class="input-field col s12 m12 l6">
                     <input id="name" type="text" class="validate">
                     <label for="name">Nombre</label>
                   </div>
-                  <div class="input-field col s6">
+                  <div class="input-field col s12 m12 l6">
                     <input id="email" type="text" class="validate">
                     <label for="email">Correo electrónico</label>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="input-field col s6">
+                  <div class="input-field col s12 m12 l6">
                     <input id="date" type="date" class="datepicker">
                     <label for="date">Fecha</label>
                   </div>
-                  <div class="col s6">
+                  <div class="col s12 m12 l6">
                     <label>Hora</label>
                     <select id="time">
                         <option value="" disabled selected></option>
