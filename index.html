@@ -30,7 +30,7 @@
         	iframe#calendar
         	{
 				width: 96%;
-				height: 86%;
+				height: 80%;
 				position: absolute;
                 top: 88px;
                 left: 2%;
@@ -75,7 +75,7 @@
                   </div>
                   <div class="col s6">
                     <label>Hora</label>
-                    <select>
+                    <select id="time">
                         <option value="" disabled selected></option>
                         <option value="08:00">08:00 a.m.</option>
                         <option value="08:30">08:30 a.m.</option>
@@ -107,7 +107,7 @@
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
-                    <textarea id="description" class="materialize-textarea"></textarea>
+                    <textarea id="reason" class="materialize-textarea"></textarea>
                     <label>Descripción</label>
                   </div>
                 </div>
@@ -146,8 +146,36 @@
                 $('select').material_select();
 
                 // Ajax Events
+                $("#send_request").on("click", function()
+                {
+                    // body...
+                    var name = $('#name').val();
+                    var email = $('#email').val();
+                    var date = $('#date').val();
+                    var time = $('#time').val();
+                    var reason = $('#reason').val();
 
-                var url = "https://calendar.zoho.com/eventreq/f677f2e42b07b7fa527e8964d494942ae5664a239afc39c61662f19c2a4d43264a64100d17cdc3bb?name=[name]&mailId=[EmailId]&date=[MM/dd/yyyy]&time=[13:00]&reason=[Reason for Appointment]"
+                    var form_data = {
+                        name: name,
+                        email: email,
+                        date: date,
+                        time: time,
+                        reason: reason
+                    };
+                    console.log(form_data);
+
+                    var jqxhr = $.post( "proxy/request_event", form_data, function(data)
+                    {
+                        console.log( "success" );
+                        alert(data);
+                    }).fail(function(data)
+                    {
+                        console.log( "error" );
+                        alert(data);
+                    });
+
+                });
+
               });
         </script>
     </body>
