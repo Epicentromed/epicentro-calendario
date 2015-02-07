@@ -11,7 +11,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-        
+
+        <!--Site Styles-->
+        <link type="text/css" rel="stylesheet" href="css/custom.css" />
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    </head>
+    <body style="background-color:#fafafa">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">Estás usando un navegador <strong>desactualizado</strong>. Por favor <a href="http://browsehappy.com/">actualiza tu navegador</a> para mejorar tu experiencia.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
         <!-- Navbar -->
         <div class="navbar-wrapper">
           <nav style="background-color: white; height:118px">
@@ -27,63 +37,7 @@
           </nav>
         </div>
 
-        <!--Site Styles-->
-        <style type="text/css">
-        	iframe#calendar
-        	{
-				width: 96%;
-				height: 80%;
-				position: absolute;
-                top: 88px;
-                left: 2%;
-        	}
-            #modal-trigger
-            {
-                position: fixed;
-                top: 15px;
-                right: 2%;
-                z-index: 5;
-            }
-            .modal
-            {
-                width: 70%;
-                height: 80%;
-                max-height: 100%;
-                top: 5% !important; 
-            }
-
-            .modal .row
-            {
-                margin-top: 20px;
-            }
-
-            @media (min-height: 38.875em)
-            {
-                .picker--opened .picker__frame 
-                {
-                top: 5%;
-                bottom: auto;
-                }
-            }
-            
-            @media (min-height: 35.875em)
-            {
-                .picker--opened .picker__frame 
-                {
-                top: 5%;
-                bottom: 20% auto;
-                }
-            }
-
-        </style>
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    </head>
-    <body style="background-color:#fafafa">
-        <!--[if lt IE 7]>
-            <p class="browsehappy">Estás usando un navegador <strong>desactualizado</strong>. Por favor <a href="http://browsehappy.com/">actualiza tu navegador</a> para mejorar tu experiencia.</p>
-        <![endif]-->
-
-        <!-- Add your site or application content here -->
+        <!--Calendar-->
         <iframe id="calendar" src="https://calendar.zoho.com/embed/f677f2e42b07b7fa527e8964d494942ae5664a239afc39c61662f19c2a4d43264a64100d17cdc3bb?title=Prueba&type=1&l=en&tz=America/Bogota&sh=[0,0,0]&v=1" width="600" height="500" frameborder="0" scrolling="no"></iframe>
 
         <!-- Modal Structure -->
@@ -94,24 +48,24 @@
                 <h5>Solicita un espacio!!!</h5>
                 <div class="divider"></div>
             </div>    
-              <form class="col s12">
+              <form id="send_request" class="col s12">
                 <div class="row">
                   <div class="input-field col s12 m12 l6">
-                    <input id="name" type="text" class="validate">
+                    <input id="name" type="text" required>
                     <label for="name">Nombre</label>
                   </div>
                   <div class="input-field col s12 m12 l6">
-                    <input id="email" type="text" class="validate">
+                    <input id="email" type="email" required>
                     <label for="email">Correo electrónico</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s12 m12 l6">
-                    <input id="date" type="date" class="datepicker">
+                    <input id="date" type="date" class="datepicker" required>
                     <label for="date">Fecha</label>
                   </div>
                   <div class="col s12 m12 l6">
-                    <label>Hora</label>
+                    <label for="time">Hora</label>
                     <select id="time">
                         <option value="" disabled selected></option>
                         <option value="08:00">08:00 a.m.</option>
@@ -144,33 +98,26 @@
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
-                    <textarea id="reason" class="materialize-textarea"></textarea>
+                    <textarea id="reason" class="materialize-textarea" required></textarea>
                     <label>Descripción</label>
                   </div>
                 </div>
 
-                <a class="waves-effect waves-teal btn-flat">Enviar</a>
-                <a class="waves-effect waves-teal btn-flat">Cancelar</a>
+                <button class="btn-flat waves-effect waves-teal" type="submit">Enviar
+                    <i class="mdi-content-send right"></i>
+                </button>
+
+                <button id="cancel_request" class="btn-flat waves-effect waves-teal" type="reset">Cancelar
+                </button>
 
               </form>
             </div>
         </div>
 
-        
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
-
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="js/moment.js"></script>
         <script type="text/javascript">
              $(document).ready(function(){
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
@@ -182,8 +129,9 @@
                 $('select').material_select();
 
                 // Ajax Events
-                $("#send_request").on("click", function()
+                $("#send_request").on("submit", function(event)
                 {
+                    event.preventDefault();
                     // body...
                     var name = $('#name').val();
                     var email = $('#email').val();
@@ -191,25 +139,38 @@
                     var time = $('#time').val();
                     var reason = $('#reason').val();
 
-                    var form_data = {
-                        name: name,
-                        email: email,
-                        date: date,
-                        time: time,
-                        reason: reason
-                    };
-                    console.log(form_data);
-
-                    var jqxhr = $.post( "proxy/request_event", form_data, function(data)
+                    if (date != "" && time != null)
                     {
-                        console.log( "success" );
-                        alert(data);
-                    }).fail(function(data)
-                    {
-                        console.log( "error" );
-                        alert(data);
-                    });
+                        date = moment(date).format("DD/MM/YYYY");  
 
+                        var form_data = {
+                            name: name,
+                            email: email,
+                            date: date,
+                            time: time,
+                            reason: reason
+                        };
+                        console.log(form_data);
+                        var jqxhr = $.post( "proxy/request_event.php", form_data, function(data)
+                        {
+                            console.log( "success" );
+                            alert(data);
+                        }).fail(function(data)
+                        {
+                            console.log( "error" );
+                            alert(data);
+                        });
+                    
+                    }
+                    else
+                    {
+                        alert("Debe elegir una fecha y hora");
+                    }
+
+                });
+
+                $('#cancel_request').on('click', function(){
+                    $('#modal1').closeModal();
                 });
 
               });
