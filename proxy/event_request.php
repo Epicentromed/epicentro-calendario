@@ -30,10 +30,17 @@ else
 	Unirest\Request::verifyPeer(false);
 	$response = Unirest\Request::post($url, $headers);
 
-	echo $response->code . " ----- ";        // HTTP Status code
-	print_r($response->headers);     // Headers
-	print_r($response->body);        // Parsed body
-	echo $response->raw_body;    // Unparsed body
+	if ($response->code == 200)
+	{
+		echo $response->body["SUCCESS"];
+	}
+	else
+	{
+		echo $response->code . " ----- ";        // HTTP Status code
+		// print_r($response->headers);     // Headers
+		// print_r($response->body);        // Parsed body
+		echo $response->raw_body;    // Unparsed body
+	}
 
 }
 
