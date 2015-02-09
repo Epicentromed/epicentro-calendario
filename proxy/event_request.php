@@ -1,5 +1,5 @@
 <?php
-require_once '/lib/Unirest.php';
+require_once 'lib/Unirest.php';
 
 if (!isset($_POST['name']) || 
 	!isset($_POST['email']) || 
