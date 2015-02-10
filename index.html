@@ -38,7 +38,7 @@
         </div>
 
         <!--Calendar-->
-        <iframe id="calendar" src="https://calendar.zoho.com/embed/f677f2e42b07b7fa527e8964d494942ae5664a239afc39c61662f19c2a4d43264a64100d17cdc3bb?title=Prueba&type=1&l=en&tz=America/Bogota&sh=[0,0,0]&v=1" width="600" height="500" frameborder="0" scrolling="no"></iframe>
+        <iframe id="calendar" src="https://calendar.zoho.com/embed/d81ecac08d39cea08e419f6dc29189dd67cf492c90fa93e9c49e13ce36ff5ede4a64100d17cdc3bb?title=Reserva salas&type=1&l=es&tz=America/Bogota&sh=[0,0,1]&v=1" width="600" height="500" frameborder="0" scrolling="no"></iframe>
 
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
@@ -151,7 +151,7 @@
                             reason: reason
                         };
                         console.log(form_data);
-                        var jqxhr = $.post( "proxy/request_event.php", form_data, function(data)
+                        var jqxhr = $.post( "proxy/event_request.php", form_data, function(data)
                         {
                             console.log( "success" );
                             alert(data);
