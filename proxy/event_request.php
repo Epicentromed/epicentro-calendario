@@ -32,7 +32,7 @@ else
 
 	if ($response->code == 200)
 	{
-		echo $response->body["SUCCESS"];
+		echo $response->body->SUCCESS;
 	}
 	else
 	{
