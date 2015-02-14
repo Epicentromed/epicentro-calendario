@@ -64,6 +64,8 @@
                     <input id="date" type="date" class="datepicker" required>
                     <label for="date">Fecha</label>
                   </div>
+                </div>
+                <div class="row">
                   <div class="col s12 m12 l6">
                     <label for="time">Hora</label>
                     <select id="time">
@@ -93,6 +95,34 @@
                         <option value="19:00">07:00 p.m.</option>
                         <option value="19:30">07:30 p.m.</option>
                         <option value="20:00">08:00 p.m.</option>
+                    </select>
+                  </div>
+                  <div class="col s12 m12 l6">
+                    <label for="span">Duración</label>
+                    <select id="span">
+                        <option value="" disabled selected></option>
+                        <option value="1 horas">1 hora</option>
+                        <option value="2 horas">2 horas</option>
+                        <option value="3 horas">3 horas</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 m12 l6">
+                    <label for="room">Sala</label>
+                    <select id="room">
+                        <option value="" disabled selected></option>
+                        <option value="Taller de ideas">Taller de ideas</option>
+                        <option value="Sala de juntas">Sala de juntas</option>
+                        <option value="Sala polivalente">Sala polivalente</option>
+                    </select>
+                  </div>
+                  <div class="col s12 m12 l6">
+                    <label for="user">Usuario</label>
+                    <select id="user">
+                        <option value="" disabled selected></option>
+                        <option value="Coworker">Coworker</option>
+                        <option value="Invitado">Invitado</option>
                     </select>
                   </div>
                 </div>
@@ -137,11 +167,15 @@
                     var email = $('#email').val();
                     var date = $('#date').val();
                     var time = $('#time').val();
+                    var span = $('#span').val();
                     var reason = $('#reason').val();
+                    var user = $('#user').val();
+                    var room = $('#room').val();
 
-                    if (date != "" && time != null)
+                    if (date != "" && time != null && user != null && room != null && span != null)
                     {
                         date = moment(date).format("MM/DD/YYYY");  
+                        reason = reason + ".\r\n" + room + ", " + span + ".\r\n" + "Usuario: " + user;
 
                         var form_data = {
                             name: name,
@@ -158,14 +192,14 @@
                             $('#modal1').closeModal();
                         }).fail(function(data)
                         {
-                            console.log( "error" );
-                            alert(data);
+                            console.log( "error: " + data );
+                            alert("Ha ocurrido un error, intente de nuevo más tarde");
                         });
                     
                     }
                     else
                     {
-                        alert("Debe elegir una fecha y hora");
+                        alert("Debe llenar todos los campos");
                     }
 
                 });
